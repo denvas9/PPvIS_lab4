@@ -36,7 +36,7 @@ bool ot_bolsh_k_mensh(type cmp1, type cmp2)
 ///////////////////////////////////////////////////////////////////////////////////////// MergeSort ///////////////////////////////////////////////////////////////////////////////////////
 
 template < class type >
-void merging(type array_input[], int left, int middle, int right, bool(*comp) (type, type))
+void merging(type *array_input, int left, int middle, int right, bool(*comp) (type, type))
 {
     int left_part_size = middle - left + 1;
     int right_part_size = right - middle;
@@ -81,7 +81,7 @@ void merging(type array_input[], int left, int middle, int right, bool(*comp) (t
     }
 }
 template < class type >
-void mergeSort(type array_input[], int left, int right, bool (*comp) (type, type))
+void mergeSort(type *array_input, int left, int right, bool (*comp) (type, type))
 {
     if (left < right)
     {
