@@ -159,7 +159,7 @@ void mergeSort(vector<type>& input_vector, int left, int right, bool (*comp) (ty
 template < class Iter >
 bool isSorted(Iter first, Iter last, bool (*comp) (Iter, Iter)) 
 {
-        for (Iter iterat = first; iterat !=last-1; ++iterat) 
+        for (auto iterat = first; iterat !=last-1; ++iterat) 
         {
                 if ( !( comp(iterat,iterat+1) ) )
                 {
