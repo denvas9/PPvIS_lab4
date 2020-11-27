@@ -301,11 +301,13 @@ int main() {
     for (int elem_num = 0; elem_num < bozo_car_vector.size(); elem_num++)
         cout << "Object N" << elem_num + 1 << " Name: " << bozo_car_vector[elem_num].get_Name() << "; Cost: " << bozo_car_vector[elem_num].get_cost() << ";\n";
     cout << endl;
+    cout << "Press \"Enter\" (or write something then press \"Enter\") when you are done with it" << endl;
+    cin.get();
     return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+// Отладка программы: F5 или меню "Отла.ка" > "Запустить отладку"
 
 // Советы по началу работы 
 //   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
