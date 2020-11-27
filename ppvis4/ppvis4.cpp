@@ -12,12 +12,12 @@
 using namespace std;
 ////////////////////////////////////////////////////////////////////////////// Пользовательские функции для сравнения /////////////////////////////////////////////////////////////////////
 template < class Iter >
-bool ot_mensh_k_bolsh_it(Iter cmp1, Iter cmp2)
+bool ot_mensh_k_bolsh_iterators(Iter cmp1, Iter cmp2)
 {
     return *cmp1 <= *cmp2;
 }
 template < class Iter >
-bool ot_bolsh_k_mensh_it(Iter cmp1, Iter cmp2)
+bool ot_bolsh_k_mensh_iterators(Iter cmp1, Iter cmp2)
 {
     return *cmp1 >= *cmp2;
 }
@@ -159,14 +159,14 @@ void mergeSort(vector<type>& input_vector, int left, int right, bool (*comp) (ty
 template < class Iter >
 bool isSorted(Iter first, Iter last, bool (*comp) (Iter, Iter)) 
 {
-        for (auto iterat = first; iterat !=last-1; ++iterat) 
+    for (Iter iterat = first; iterat !=last-1; ++iterat)
+    {
+        if ( !( comp(iterat,iterat+1) ) )
         {
-                if ( !( comp(iterat,iterat+1) ) )
-                {
-                        return false;
-                }
+            return false;
         }
-        return true;
+    }
+    return true;
 }
 template < class Iter >
 void BozoSort(Iter first, Iter last, int size, bool (*comp) (Iter, Iter)) {
@@ -176,15 +176,15 @@ void BozoSort(Iter first, Iter last, int size, bool (*comp) (Iter, Iter)) {
         cout << "error" << endl;
         return;
     }
-        srand(time(NULL));
-        
-        while (!isSorted(first, last, comp)) 
-        {
-            auto iter1 = first+(rand() % size);
-            auto iter2 = first+(rand() % size);
 
-            swap(*iter1, *iter2);
-        }
+    srand(time(0));
+        
+    while (!isSorted(first, last, comp)) 
+    {
+        Iter iter1 = first+(rand() % size);
+        Iter iter2 = first+(rand() % size);
+        swap(*iter1, *iter2);
+    }
     
 }
 
@@ -193,7 +193,8 @@ void BozoSort(Iter first, Iter last, int size, bool (*comp) (Iter, Iter)) {
 int main() {
     int merge_int_array[]{ 4, 6, 5, 12, 5, 12, 7, 9, 11 };
     double merge_double_array[]{ 1.31, 11.0, 12.2999, 32.1, 2.0501, 33.17, 33.5, 12.63, 7.42 };
-    Car merge_car_array[]{
+    Car merge_car_array[]
+    {
         Car(1000, "UAZ"),
         Car(5000, "Volga"),
         Car(1500, "Buhanka"),
@@ -205,26 +206,26 @@ int main() {
         Car(10000, "Humvee")
     };
 
-
     cout << "MergeSort for arrays: " << endl;
     mergeSort(merge_int_array, 0, 8, ot_bolsh_k_mensh);
     mergeSort(merge_double_array, 0, 8, ot_bolsh_k_mensh);
     mergeSort(merge_car_array, 0, 8, ot_bolsh_k_mensh);
 
-    for (int i = 0; i < 9; i++)
-        cout << merge_int_array[i] << ' ';
+    for (int elem_num = 0; elem_num < 9; elem_num++)
+        cout << merge_int_array[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < 9; i++)
-        cout << merge_double_array[i] << ' ';
+    for (int elem_num = 0; elem_num < 9; elem_num++)
+        cout << merge_double_array[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < 9; i++)
-        cout << "Object N"<< i+1 << " Name: " << merge_car_array[i].get_Name() << "; Cost: " << merge_car_array[i].get_cost() << ";\n";
+    for (int elem_num = 0; elem_num < 9; elem_num++)
+        cout << "Object N"<< elem_num+1 << " Name: " << merge_car_array[elem_num].get_Name() << "; Cost: " << merge_car_array[elem_num].get_cost() << ";\n";
     cout << endl;
 
 
     int  bozo_int_array[]{ 1, 3, 4, 3, 8 };
     double bozo_double_array[]{ 1.3, 1.0, 3.5, 12.3, 7.2 };
-    Car bozo_car_array[]{
+    Car bozo_car_array[]
+    {
         Car(1000, "UAZ"),
         Car(1500, "Buhanka"),
         Car(3000, "Lada Kalina"),
@@ -233,23 +234,23 @@ int main() {
     };
 
     cout << "BozoSort for arrays: " << endl;
-    BozoSort(bozo_car_array, bozo_car_array + 5, 5, ot_bolsh_k_mensh_it);
-    BozoSort(bozo_int_array, bozo_int_array + 5, 5, ot_bolsh_k_mensh_it);
-    BozoSort(bozo_double_array, bozo_double_array + 5, 5, ot_bolsh_k_mensh_it);
+    BozoSort(bozo_car_array, bozo_car_array + 5, 5, ot_bolsh_k_mensh_iterators);
+    BozoSort(bozo_int_array, bozo_int_array + 5, 5, ot_bolsh_k_mensh_iterators);
+    BozoSort(bozo_double_array, bozo_double_array + 5, 5, ot_bolsh_k_mensh_iterators);
 
 
-    for (int i = 0; i < 5; i++)
-        cout << bozo_int_array[i] << ' ';
+    for (int elem_num = 0; elem_num < 5; elem_num++)
+        cout << bozo_int_array[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < 5; i++)
-        cout << bozo_double_array[i] << ' ';
+    for (int elem_num = 0; elem_num < 5; elem_num++)
+        cout << bozo_double_array[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < 5; i++)
-        cout << "Object N" << i + 1 << " Name: " << bozo_car_array[i].get_Name() << "; Cost: " << bozo_car_array[i].get_cost() << ";\n";
+    for (int elem_num = 0; elem_num < 5; elem_num++)
+        cout << "Object N" << elem_num + 1 << " Name: " << bozo_car_array[elem_num].get_Name() << "; Cost: " << bozo_car_array[elem_num].get_cost() << ";\n";
     cout << endl;
 
     vector<int> merge_int_vector{ 1, 3, 2, 9, 4, 3 };
-    vector<double> merge_double_vector{ 1.3, 1.0, 2.001, 3.17, 3.5, 12.3 };
+    vector<double> merge_double_vector{ 1.3, 1.0, 2.07, 3.12, 3.3, 12.1 };
     vector<Car> merge_car_vector
     {
         Car(1000, "UAZ"),
@@ -265,18 +266,18 @@ int main() {
     mergeSort(merge_int_vector, 0, merge_int_vector.size() -1, ot_mensh_k_bolsh);
     mergeSort(merge_double_vector, 0, merge_double_vector.size() - 1, ot_mensh_k_bolsh);
 
-    for (int i = 0; i < merge_int_vector.size(); i++)
-        cout << merge_int_vector[i] << ' ';
+    for (int elem_num = 0; elem_num < merge_int_vector.size(); elem_num++)
+        cout << merge_int_vector[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < merge_double_vector.size(); i++)
-        cout << merge_double_vector[i] << ' ';
+    for (int elem_num = 0; elem_num < merge_double_vector.size(); elem_num++)
+        cout << merge_double_vector[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < merge_car_vector.size(); i++)
-        cout << "Object N" << i + 1 << " Name: " << merge_car_vector[i].get_Name() << "; Cost: " << merge_car_vector[i].get_cost() << ";\n";
+    for (int elem_num = 0; elem_num < merge_car_vector.size(); elem_num++)
+        cout << "Object N" << elem_num + 1 << " Name: " << merge_car_vector[elem_num].get_Name() << "; Cost: " << merge_car_vector[elem_num].get_cost() << ";\n";
     cout << endl;
 
-    vector<int> bozo_int_vector{ 1, 3, 2, 9, 4, 3 };
-    vector<double> bozo_double_vector{ 1.3, 1.0, 2.001, 3.17, 3.5, 12.3 };
+    vector<int> bozo_int_vector{ 1, 7, 2, 8, 73, 7 };
+    vector<double> bozo_double_vector{ 1.2, 1.0, 2.003, 3.17, 3.4, 12.5 };
     vector<Car> bozo_car_vector
     {
         Car(1000, "UAZ"),
@@ -287,18 +288,18 @@ int main() {
         Car(10000, "Humvee")
     };
     cout << "BozoSort for vectors: " << endl;
-    BozoSort(bozo_car_vector.begin(), bozo_car_vector.end(), bozo_car_vector.size(), ot_bolsh_k_mensh_it);
-    BozoSort(bozo_int_vector.begin(), bozo_int_vector.end(), bozo_int_vector.size(), ot_bolsh_k_mensh_it);
-    BozoSort(bozo_double_vector.begin(), bozo_double_vector.end(), bozo_double_vector.size(), ot_bolsh_k_mensh_it);
+     BozoSort(bozo_car_vector.begin(), bozo_car_vector.end(), bozo_car_vector.size(), ot_bolsh_k_mensh_iterators);
+     BozoSort(bozo_int_vector.begin(), bozo_int_vector.end(), bozo_int_vector.size(), ot_bolsh_k_mensh_iterators);
+     BozoSort(bozo_double_vector.begin(), bozo_double_vector.end(), bozo_double_vector.size(), ot_bolsh_k_mensh_iterators);
 
-    for (int i = 0; i < bozo_int_vector.size(); i++)
-        cout << bozo_int_vector[i] << ' ';
+    for (int elem_num = 0; elem_num < bozo_int_vector.size(); elem_num++)
+        cout << bozo_int_vector[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < bozo_double_vector.size(); i++)
-        cout << bozo_double_vector[i] << ' ';
+    for (int elem_num = 0; elem_num < bozo_double_vector.size(); elem_num++)
+        cout << bozo_double_vector[elem_num] << ' ';
     cout << endl;
-    for (int i = 0; i < bozo_car_vector.size(); i++)
-        cout << "Object N" << i + 1 << " Name: " << bozo_car_vector[i].get_Name() << "; Cost: " << bozo_car_vector[i].get_cost() << ";\n";
+    for (int elem_num = 0; elem_num < bozo_car_vector.size(); elem_num++)
+        cout << "Object N" << elem_num + 1 << " Name: " << bozo_car_vector[elem_num].get_Name() << "; Cost: " << bozo_car_vector[elem_num].get_cost() << ";\n";
     cout << endl;
     return 0;
 }

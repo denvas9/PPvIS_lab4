@@ -1,0 +1,11 @@
+﻿  ppvis4.cpp
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(180,16): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(269,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(272,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(275,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(295,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(298,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(301,37): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(180,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\tomga\source\repos\ppvis4\ppvis4.cpp(237): message : выполняется компиляция ссылки на экземпляр шаблон функции "void BozoSort<Car*>(Car *,Car *,int,bool (__cdecl *)(Car *,Car *))"
+  ppvis4.vcxproj -> C:\Users\tomga\source\repos\ppvis4\Debug\ppvis4.exe
